@@ -44,7 +44,6 @@ app.get("/:lang", async function(req, res) {
 
      }
   })
-  console.log(data.forecasts)
   
   if(req.params.lang != "en"){
   data.location.city = await translate(data.location.city, req.params.lang);
