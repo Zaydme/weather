@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "ejs": "^1.0.0",
+    "ejs": "^2.7.1",
     "crypto-js": "^3.1.9-1",
     "jquery-extend": "^2.0.3",
     "request-promise": "^4.2.4",
