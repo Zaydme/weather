@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!-- 
+
+
+░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄
+░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄
+░░░█░░░▒▒▒▒▒▒░░░░░░░░▒▒▒░░█
+░░█░░░░░░▄██▀▄▄░░░░░▄▄▄░░░█
+░▀▒▄▄▄▒░█▀▀▀▀▄▄█░░░██▄▄█░░░█
+█▒█▒▄░▀▄▄▄▀░░░░░░░░█░░░▒▒▒▒▒█
+█▒█░█▀▄▄░░░░░█▀░░░░▀▄░░▄▀▀▀▄▒█
+░█▀▄░█▄░█▀▄▄░▀░▀▀░▄▄▀░░░░█░░█
+░░█░░▀▄▀█▄▄░█▀▀▀▄▄▄▄▀▀█▀██░█
+░░░█░░██░░▀█▄▄▄█▄▄█▄████░█
+░░░░█░░░▀▀▄░█░░░█░███████░█
+░░░░░▀▄░░░▀▀▄▄▄█▄█▄█▄█▄▀░░█
+░░░░░░░▀▄▄░▒▒▒▒░░░░░░░░░░█
+░░░░░░░░░░▀▀▄▄░▒▒▒▒▒▒▒▒▒▒░█
+░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░█
+-->
+<html lang="en">
+  <head>
+    <title>Weather</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css?<%=Date.now()%>">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css"/>
+    <link rel="shortcut icon" href="https://img.icons8.com/dusk/32/000000/partly-cloudy-day.png" type="image/x-icon"/>
+
+  </head>
+  
+  
+  <body>
+<div class="background-image"></div>
+
+    <main>
+      <div class="lang">
+        <a href="/ar"><img src="https://img.icons8.com/officel/32/000000/morocco.png"></a>
+        <a href="/fr"><img src="https://img.icons8.com/officel/32/000000/france.png"></a>
+        <a href="/en"><img src="https://img.icons8.com/officel/32/000000/usa.png"></a>
+        <a href="/es"><img src="https://img.icons8.com/officel/32/000000/spain.png"></a>
+      </div>
+      <h1 id="city"><span class="city-name"><%=data.location.city%></span><br><small><%=data.location.region%> - <%=data.location.country%></small></h1>
+      
+      <p id="weather"><%=data.current_observation.condition.temperature%>°c, <span><%=data.current_observation.condition.text%></span></p>
+    <center>
+      <div style=" display:inline-block; text-align:center;">
+        <span class="widget-small"><i class="wi wi-strong-wind"></i><br><%=data.current_observation.wind.speed%>km/h</span>
+        <span class="widget-small"><i class="wi wi-humidity"></i><br><%=data.current_observation.atmosphere.humidity%>%</span>
+        <span class="widget-small"><i class="wi wi-sunrise"></i><br><%=data.current_observation.astronomy.sunrise.split(" ").join("")%></span>
+        <span class="widget-small"><i class="wi wi-sunset"></i><br><%=data.current_observation.astronomy.sunset.split(" ").join("")%></span>
+      </div>
+      <div style=" display:inline-block; margin-top:90px; text-align:center;">
+      <%data.forecasts.forEach(day=>{%>
+      
+      <% include card%>
+    
+      <%})%>
+       </div>
+      </center>
+       <br><br>
+    </main>
+    
+    <footer>
+      <p>
+        <img width="30px" src="https://img.icons8.com/dusk/32/000000/partly-cloudy-day.png"> Real time data.
+      </p>
+    </footer>
+  </body>
+  
+
+<style>
+.background-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index:-1;
+    background: url('https://source.unsplash.com/random?<%=img%>') no-repeat fixed;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    -webkit-filter: blur(4px) brightness(80%);
+    -moz-filter: blur(4px) brightness(80%);
+    -o-filter: blur(4px) brightness(80%);
+    -ms-filter: blur(4px) brightness(80%);
+    filter: blur(4px) brightness(80%);
+    transform: scale(1.2); 
+} 
+</style>
+  
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>  
+
+</html>
